@@ -1,12 +1,32 @@
-import React, { component } from "react";
+import React, { Component } from "react";
 import PhoneForm from "./Component/PhoneForm";
 
-function App() {
-  return (
-    <div>
-      <PhoneForm />
-    </div>
-  );
+class App extends Component {
+
+  id = 0; //우리기 setState메소드를 사용하는 이유는 어떤 값이 수정됐을 때 Rerendering을 꼭 하게끔 하기 위함인데 id 값은 화면에 나올 필요가 없어서
+          // state안에 굳이 포함 시키지 않고 밖으로 뺐다.
+
+  state= {
+    information : [],
+  }
+
+  handleCreate = (data) => {
+    const { information } = this.state; //비구조 할당문법
+    this.setState({
+      information: information.concat({
+        ...data,
+        id: this.id++
+      })
+    }) 
+  }
+  render() {
+    return (
+      <div>
+          <PhoneForm onCreate={this.handleCreate} />
+          {JSON.stringify(this.state.information)}
+      </div>
+    );
+  }
 }
 
 export default App;
