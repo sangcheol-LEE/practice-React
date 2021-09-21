@@ -9,7 +9,7 @@ class PhoneForm extends Component {
   
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value //input 이 e.target이고 여기에 입력된 값이 valu이다.
+      [e.target.name]: e.target.value //input 이 e.target이고 여기에 입력된 값이 value이다.
     });
   }
 
